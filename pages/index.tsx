@@ -20,7 +20,7 @@ const Home: NextPage = () => {
             className={idx === lengthItem - 1 ? 'pr-5' : ''}
             productCode="600-diamond"
             productName="600 Diamond"
-            gameName="PUBG Mobile"
+            gameName={idx % 2 == 0 ? "PUBG Mobile" : undefined}
             image="https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg"
             stock={{ value: Math.ceil(Math.random() * 2000), type: idx % 2 === 1 ? 'available' : 'limited' }}
             price={{ discount: idx % 3 === 1 ? null : 10, original: 10000, final: 9000 }}

@@ -1,7 +1,15 @@
+import Image from "next/image"
+
 const Navbar = () => {
   return (
     <nav className="border-b-[1px] border-gray-200 px-3 py-4">
-      <img className="w-36" src="/logo.svg" />
+      <Image
+        priority
+        alt="Logo"
+        src="/logo.svg"
+        width={126}
+        height={42}
+      />
     </nav>
   )
 }
