@@ -7,9 +7,9 @@ import Scrollable from '../components/Scrollable'
 const lengthItem = 10
 
 const Home: NextPage = () => {
-  return (<>
+  return (<div className="bg-white">
     <Navbar />
-    <main className="min-h-[83vh]">
+    <main className="min-h-[80vh] mb-8">
       <div className="mx-4 mb-4 mt-6">
         <h2 className="font-bold">Termurah di Seluruh Indonesia</h2>
       </div>
@@ -50,7 +50,7 @@ const Home: NextPage = () => {
       </Scrollable>
     </main>
     <Footer />
-  </>)
+  </div>)
 }
 
 export default Home

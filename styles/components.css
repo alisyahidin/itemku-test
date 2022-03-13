@@ -1,0 +1,13 @@
+@layer components {
+  .discount-badge {
+    @apply bg-red-500 text-white rounded-md py-[2px] px-1;
+  }
+
+  .price {
+    @apply text-xl text-orange-500 font-bold;
+  }
+
+  .delivery {
+    @apply inline-block px-[3px] bg-green-200 text-green-700 font-medium rounded-md;
+  }
+}

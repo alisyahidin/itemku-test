@@ -2,7 +2,7 @@ import Image from "next/image"
 
 const Navbar = () => {
   return (
-    <nav className="border-b-[1px] border-gray-200 px-3 py-4">
+    <nav className="border-b-[1px] border-gray-200 px-3 py-3">
       <Image
         priority
         alt="Logo"

@@ -59,11 +59,11 @@ const Card: FC<CardProps> = ({
             Stok {stock.value > 999 ? '999+' : stock.value}
           </div>
           {price.discount && <div className="space-x-3">
-            <span className="bg-red-500 text-white rounded-md py-[2px] px-1">{price.discount}%</span>
+            <span className="discount-badge">{price.discount}%</span>
             <span className="text-gray-400 line-through">Rp{price.original.toLocaleString('id')}</span>
           </div>}
-          <p className="text-xl text-orange-500 font-bold">Rp{price.final.toLocaleString('id')}</p>
-          <p className="inline-block px-[3px] bg-green-200 text-green-700 font-medium rounded-md">{delivery}</p>
+          <p className="price">Rp{price.final.toLocaleString('id')}</p>
+          <p className="delivery">{delivery}</p>
         </div>
         <div className="p-2">
           <p className="text-gray-400">{sold} produk terjual</p>

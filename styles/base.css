@@ -1,0 +1,22 @@
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+
+  h3 {
+    @apply text-lg;
+  }
+
+  .scrollbar-hide {
+    scrollbar-width: none;
+    &&::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      background: transparent;
+    }
+  }
+}
