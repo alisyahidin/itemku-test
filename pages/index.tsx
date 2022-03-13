@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import ScrollableCard from '../components/Card/Scrollable'
+import Card from '../components/Card'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import Scrollable from '../components/Scrollable'
@@ -9,13 +9,13 @@ const lengthItem = 10
 const Home: NextPage = () => {
   return (<div className="bg-white">
     <Navbar />
-    <main className="min-h-[80vh] mb-8">
-      <div className="mx-4 mb-4 mt-6">
+    <main className="min-h-[80vh] mb-12">
+      <div className="mx-4 mb-4 mt-8">
         <h2 className="font-bold">Termurah di Seluruh Indonesia</h2>
       </div>
       <Scrollable direction="x" className="gap-3 py-2 px-5">
         {[...new Array(lengthItem)].map((_, idx) => (
-          <ScrollableCard
+          <Card
             key={idx}
             className={idx === lengthItem - 1 ? 'pr-5' : ''}
             productCode="600-diamond"
@@ -29,12 +29,12 @@ const Home: NextPage = () => {
           />
         ))}
       </Scrollable>
-      <div className="mx-4 mb-4 mt-6">
+      <div className="mx-4 mb-4 mt-8">
         <h2 className="font-bold">Produk Mobile Legends terpopuler</h2>
       </div>
       <Scrollable direction="x" className="gap-3 py-2 px-5">
         {[...new Array(lengthItem)].map((_, idx) => (
-          <ScrollableCard
+          <Card
             key={idx}
             className={idx === lengthItem - 1 ? 'pr-5' : ''}
             productCode="600-uc"

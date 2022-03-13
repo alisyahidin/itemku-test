@@ -1,5 +1,5 @@
 import Image from "next/image"
-import ScrollableCard from "../../components/Card/Scrollable"
+import Card from "../../components/Card"
 import LoveButton from "../../components/LoveButton"
 import Scrollable from "../../components/Scrollable"
 
@@ -10,7 +10,7 @@ const DetailProduct = () => {
       loading="lazy"
       layout="responsive"
       width="100%"
-      height={45}
+      height={50}
       objectFit="cover"
       src="https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg"
     />
@@ -39,17 +39,19 @@ const DetailProduct = () => {
         <p>Description Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quo sequi...</p>
         <button className="self-end text-lg text-blue-500 font-bold">Selengkapnya</button>
       </div>
-      <div className="bg-white flex-grow py-8 px-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="font-bold">Pengiriman Tercepat</h2>
-          <button className="text-blue-500 font-bold">Lihat Semua</button>
+      <div className="bg-white flex-grow py-8">
+        <div className="px-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="font-bold">Pengiriman Tercepat</h2>
+            <button className="text-blue-500 font-bold">Lihat Semua</button>
+          </div>
+          <p>Produk dari penjual-penjual yang memberi Garansi Pengiriman 10 menit</p>
         </div>
-        <p>Produk dari penjual-penjual yang memberi Garansi Pengiriman 10 menit</p>
-        <Scrollable direction="x" className="gap-3 py-2 mt-4 mb-20">
+        <Scrollable direction="x" className="gap-3 py-2 px-6 mt-4 mb-28">
           {[...new Array(10)].map((_, idx) => (
-            <ScrollableCard
+            <Card
               key={idx}
-              className={idx === 10 - 1 ? 'pr-5' : ''}
+              className={idx === 10 - 1 ? 'pr-6' : ''}
               productCode="600-uc"
               productName="600 UC"
               gameName="PUBG Mobile"

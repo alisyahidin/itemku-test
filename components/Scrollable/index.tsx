@@ -1,6 +1,5 @@
 import { FC, HTMLAttributes, MouseEvent, useRef, useState } from "react"
 import clsx from "clsx"
-import { DragContextProvider } from "./context"
 
 type HorizontalProps = {
   direction: 'x',
@@ -54,20 +53,19 @@ const Scrollable: FC<Props> = ({ children, direction = 'x', height, className = 
       onMouseLeave={setNotDragging}
       style={{ height }}
       className={clsx([
-        "select-none cursor-grab",
+        "select-none",
         direction === 'x'
           ? 'overflow-x-auto overflow-y-hidden scrollbar-hide'
           : `overflow-y-auto overflow-x-hidden]`,
-        initialPosition !== null ? 'cursor-grabbing' : ''
+        initialPosition !== null ? 'cursor-grabbing' : 'cursor-grab'
       ])}
     >
       <div className={clsx([
         `flex ${className}`.trim(),
-        direction === 'x' ? 'flex-row' : 'flex-col'
+        direction === 'x' ? 'flex-row' : 'flex-col',
+        isDragging && 'pointer-events-none'
       ])}>
-        <DragContextProvider isDragging={isDragging}>
-          {children}
-        </DragContextProvider>
+        {children}
       </div>
     </div>
   )

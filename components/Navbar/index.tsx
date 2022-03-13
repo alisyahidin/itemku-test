@@ -7,8 +7,9 @@ const Navbar = () => {
         priority
         alt="Logo"
         src="/logo.svg"
-        width={126}
-        height={42}
+        objectFit="cover"
+        width={120}
+        height={38}
       />
     </nav>
   )
