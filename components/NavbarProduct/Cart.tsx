@@ -18,7 +18,7 @@ const Cart: FC<{ mode: NavbarMode }> = ({ mode }) => {
       timeout.current = setTimeout(() => {
         counter.current.classList.remove('increase')
         stopAnimating()
-      }, 500)
+      }, 350)
     }
 
     isReadyRender.current = true
