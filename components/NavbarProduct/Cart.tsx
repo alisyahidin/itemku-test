@@ -4,20 +4,24 @@ import CartIcon from "../icon/Cart"
 import { NavbarMode } from "."
 
 const Cart: FC<{ mode: NavbarMode }> = ({ mode }) => {
+  const isReadyRender = useRef<boolean>(false) // skip animating on first render
   const timeout = useRef<ReturnType<typeof setTimeout>>(null!)
   const counter = useRef<HTMLSpanElement>(null!)
   const count = useCart(state => state.count)
   const stopAnimating = useCart(state => state.stopAnimating)
 
   useEffect(() => {
-    clearTimeout(timeout.current)
-    counter.current.classList.add('increase')
+    if (isReadyRender.current) {
+      clearTimeout(timeout.current)
+      counter.current.classList.add('increase')
 
-    timeout.current = setTimeout(() => {
-      counter.current.classList.remove('increase')
-      stopAnimating()
-    }, 500)
+      timeout.current = setTimeout(() => {
+        counter.current.classList.remove('increase')
+        stopAnimating()
+      }, 500)
+    }
 
+    isReadyRender.current = true
     return () => clearTimeout(timeout.current)
   }, [count])
 

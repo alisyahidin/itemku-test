@@ -71,7 +71,6 @@ const BottomSheetBody: FC<BodyProps> = ({ children, mode, toggleMode }) => {
       onMouseDown={e => setInitalPositionY(e.clientY)}
       onMouseUp={onDragEnd}
       onMouseMove={e => initialPositionY && handleDrag(e.clientY)}
-      onDrag={console.log}
       onTouchStart={e => setInitalPositionY(getTouchY(e))}
       onTouchEnd={onDragEnd}
       onTouchMove={e => initialPositionY && handleDrag(getTouchY(e))}
