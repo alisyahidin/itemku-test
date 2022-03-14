@@ -1,12 +1,20 @@
+import { useRef } from "react"
 import Image from "next/image"
+import BottomSheet, { BottomSheetAction } from "../../components/BottomSheet"
 import Card from "../../components/Card"
 import LoveButton from "../../components/LoveButton"
 import NavbarProduct from "../../components/Navbar/NavbarProduct"
 import Scrollable from "../../components/Scrollable"
 
 const DetailProduct = () => {
+  const bottomSheet = useRef<BottomSheetAction>(null)
+
   return (<>
     <NavbarProduct />
+    <BottomSheet ref={bottomSheet}>
+      <h2 className="font-bold mb-3">Deskripsi Produk</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur ab necessitatibus quibusdam blanditiis labore vel sapiente, molestiae, consequatur quas ducimus sequi soluta recusandae architecto! Ullam beatae nulla accusamus quisquam nihil!</p>
+    </BottomSheet>
     <div className="min-h-screen">
       <Image
         alt="Detail Product"
@@ -40,7 +48,9 @@ const DetailProduct = () => {
         <div className="flex flex-col bg-white py-8 px-6 gap-3">
           <h2 className="font-bold mb-3">Deskripsi Produk</h2>
           <p>Description Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quo sequi...</p>
-          <button className="self-end text-lg text-blue-500 font-bold">Selengkapnya</button>
+          <button onClick={() => bottomSheet.current?.open()} className="self-end text-lg text-blue-500 font-bold">
+            Selengkapnya
+          </button>
         </div>
         <div className="bg-white flex-grow py-8">
           <div className="px-6">
