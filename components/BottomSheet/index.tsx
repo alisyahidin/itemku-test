@@ -1,5 +1,6 @@
 import { forwardRef, PropsWithChildren, useImperativeHandle, useState } from "react"
-import clsx from "clsx"
+import { AnimatePresence } from "framer-motion"
+import BottomSheetBody from "./Body"
 
 type Props = PropsWithChildren<{}>
 
@@ -19,24 +20,12 @@ const BottomSheet = forwardRef<BottomSheetAction, Props>((props, ref) => {
 
   useImperativeHandle(ref, () => ({ open: () => handleOpen(true), close: () => handleOpen(false) }))
 
-  return (<>
-    <div
-      onClick={() => handleOpen(false)}
-      className={clsx([
-        "fixed top-0 h-screen w-full max-w-[600px] bg-gray-900 bg-opacity-50 z-10",
-        !isOpen && 'invisible'
-      ])}
-    />
-    <div
-      style={{ transform: `translateY(${isOpen ? 50 : 100}%)` }}
-      className="flex flex-col items-center fixed bottom-0 w-full h-[90%] max-w-[600px] z-[15] bg-white rounded-t-3xl will-change-transform transition-transform duration-300 translate-y-full"
-    >
-      <div className="h-[4px] w-16 bg-gray-400 rounded my-3" />
-      <div className="py-6 px-8">
+  return (
+    <AnimatePresence>
+      {isOpen && <BottomSheetBody handleOpen={handleOpen}>
         {props.children}
-      </div>
-    </div>
-  </>)
+      </BottomSheetBody>}
+    </AnimatePresence>)
 })
 
 BottomSheet.displayName = 'BottomSheet'
