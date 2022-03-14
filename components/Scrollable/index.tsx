@@ -21,21 +21,19 @@ const Scrollable: FC<Props> = ({ children, direction = 'x', height, className = 
   const [isDragging, setIsDragging] = useState(false)
 
   const clientPositon: 'clientX' | 'clientY' = direction === 'x' ? 'clientX' : 'clientY'
-  const scrollPositon: 'scrollLeft' | 'scrollTop' = direction === 'x' ? 'scrollLeft' : 'scrollTop'
-
   const handleDragging = (e: MouseEvent<HTMLDivElement>) => {
     if (!isDragging) setIsDragging(true)
 
     if (direction === 'x' && initialPosition) {
-      divElement.current.scrollLeft = initialPosition.scroll + (initialPosition.client - e[clientPositon])
+      divElement.current.scrollLeft = initialPosition.scroll + ((initialPosition.client - e[clientPositon]) * 1.3)
     }
     if (direction === 'y' && initialPosition) {
-      divElement.current.scrollTop = initialPosition.scroll + (initialPosition.client - e[clientPositon])
+      divElement.current.scrollTop = initialPosition.scroll + ((initialPosition.client - e[clientPositon]) * 1.3)
     }
   }
 
   const initPosition = (e: MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation()
+    const scrollPositon: 'scrollLeft' | 'scrollTop' = direction === 'x' ? 'scrollLeft' : 'scrollTop'
     setInitalPosition({ client: e[clientPositon], scroll: divElement.current[scrollPositon] })
   }
 
