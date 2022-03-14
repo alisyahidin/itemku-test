@@ -30,17 +30,17 @@ const BottomSheetBody: FC<BodyProps> = ({ children, mode, toggleMode }) => {
   }
 
   const onDragEnd = () => {
-    if (totalHeight.current < 25) {
+    if (totalHeight.current < 35) {
       toggleMode('full')
       totalHeight.current = 0
       bodyElement.current.style.transform = 'translateY(0%)'
     }
-    if (totalHeight.current >= 25 && totalHeight.current < 75) {
+    if (totalHeight.current >= 35 && totalHeight.current < 65) {
       toggleMode('half')
       totalHeight.current = 50
       bodyElement.current.style.transform = 'translateY(50%)'
     }
-    if (totalHeight.current >= 75) {
+    if (totalHeight.current >= 65) {
       toggleMode('close')
       totalHeight.current = 100
     }
@@ -49,12 +49,11 @@ const BottomSheetBody: FC<BodyProps> = ({ children, mode, toggleMode }) => {
 
   useEffect(() => {
     if (isPresent) {
-      backdropElement.current.classList.add('opacity-70')
+      backdropElement.current.style.opacity = '70%'
       bodyElement.current.style.transform = 'translateY(50%)'
     }
     if (!isPresent) {
-      backdropElement.current.classList.remove('opacity-70')
-      backdropElement.current.classList.add('opacity-0')
+      backdropElement.current.style.opacity = '0%'
       bodyElement.current.style.transform = 'translateY(100%)'
       setTimeout(safeToRemove, 300)
     }
@@ -64,6 +63,7 @@ const BottomSheetBody: FC<BodyProps> = ({ children, mode, toggleMode }) => {
     <div
       ref={backdropElement}
       onClick={() => toggleMode('close')}
+      style={{ opacity: '0%' }}
       className="fixed top-0 h-screen w-full max-w-[600px] bg-black transition-opacity duration-300 z-10"
     />
     <div
