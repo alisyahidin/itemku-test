@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from "react"
+import Link from "next/link"
 import clsx from "clsx"
 import BackIcon from "../icon/Back"
-import CartIcon from "../icon/Cart"
 import ShareIcon from "../icon/Share"
-import Link from "next/link"
+import Cart from "./Cart"
 
-type NavbarMode = 'transparent' | 'white'
+export type NavbarMode = 'transparent' | 'white'
 
 const Button: FC<{ mode: NavbarMode }> = ({ mode, children }) => (
   <button className={clsx([
@@ -44,7 +44,7 @@ const NavbarProduct = () => {
           <ShareIcon color={mode === 'transparent' ? "#FFF" : '#000'} />
         </Button>
         <Button mode={mode}>
-          <CartIcon color={mode === 'transparent' ? "#FFF" : '#000'} />
+          <Cart mode={mode} />
         </Button>
       </div>
     </nav>

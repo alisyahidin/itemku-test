@@ -11,7 +11,7 @@ const getTouchY = (e: TouchEvent<HTMLDivElement>) => {
 }
 
 const BottomSheetBody: FC<BodyProps> = ({ children, mode, toggleMode }) => {
-  const totalHeight = useRef<number>(50)
+  const totalHeight = useRef<number>(40)
   const backdropElement = useRef<HTMLDivElement>(null!)
   const bodyElement = useRef<HTMLDivElement>(null!)
   const [isPresent, safeToRemove] = usePresence()
@@ -20,8 +20,8 @@ const BottomSheetBody: FC<BodyProps> = ({ children, mode, toggleMode }) => {
 
   const handleDrag = (clientY: number) => {
     if (initialPositionY !== null) {
-      const totalHeightByBody = (window.innerHeight * (90 / 100)) // height of body 90vh
-      const initialHeight = mode === 'half' ? 50 : 0
+      const totalHeightByBody = (window.innerHeight * (95 / 100)) // height of body 90vh
+      const initialHeight = mode === 'half' ? 40 : 0
       const total = initialHeight - (((initialPositionY - clientY) / totalHeightByBody) * 100)
       totalHeight.current = total
 
@@ -30,17 +30,17 @@ const BottomSheetBody: FC<BodyProps> = ({ children, mode, toggleMode }) => {
   }
 
   const onDragEnd = () => {
-    if (totalHeight.current < 35) {
+    if (totalHeight.current < 20) {
       toggleMode('full')
       totalHeight.current = 0
       bodyElement.current.style.transform = 'translateY(0%)'
     }
-    if (totalHeight.current >= 35 && totalHeight.current < 65) {
+    if (totalHeight.current >= 20 && totalHeight.current < 60) {
       toggleMode('half')
-      totalHeight.current = 50
-      bodyElement.current.style.transform = 'translateY(50%)'
+      totalHeight.current = 40
+      bodyElement.current.style.transform = 'translateY(40%)'
     }
-    if (totalHeight.current >= 65) {
+    if (totalHeight.current >= 60) {
       toggleMode('close')
       totalHeight.current = 100
     }
@@ -50,7 +50,7 @@ const BottomSheetBody: FC<BodyProps> = ({ children, mode, toggleMode }) => {
   useEffect(() => {
     if (isPresent) {
       backdropElement.current.style.opacity = '70%'
-      bodyElement.current.style.transform = 'translateY(50%)'
+      bodyElement.current.style.transform = 'translateY(40%)'
     }
     if (!isPresent) {
       backdropElement.current.style.opacity = '0%'
@@ -76,7 +76,7 @@ const BottomSheetBody: FC<BodyProps> = ({ children, mode, toggleMode }) => {
       onTouchEnd={onDragEnd}
       onTouchMove={e => initialPositionY && handleDrag(getTouchY(e))}
       className={clsx([
-        "flex flex-col items-center fixed bottom-0 w-full h-[90%] max-w-[600px] z-[15] bg-white rounded-t-3xl translate-y-full",
+        "flex flex-col items-center fixed bottom-0 w-full h-[95%] max-w-[600px] z-[15] bg-white rounded-t-3xl translate-y-full",
         initialPositionY === null && "touch-none will-change-transform transition-transform duration-300"
       ])}
     >

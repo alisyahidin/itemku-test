@@ -3,20 +3,23 @@ import Image from "next/image"
 import BottomSheet, { BottomSheetAction } from "../../components/BottomSheet"
 import Card from "../../components/Card"
 import LoveButton from "../../components/LoveButton"
-import NavbarProduct from "../../components/Navbar/NavbarProduct"
+import NavbarProduct from "../../components/NavbarProduct"
 import Scrollable from "../../components/Scrollable"
+import { useCart } from "../../state"
 
 const DetailProduct = () => {
   const bottomSheet = useRef<BottomSheetAction>(null)
+  const increaseCard = useCart(state => state.increase)
 
   return (<>
     <NavbarProduct />
     <BottomSheet ref={bottomSheet}>
-      <h2 className="font-bold mb-3">Deskripsi Produk</h2>
+      <h2 className="font-bold mb-4">Deskripsi Produk</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur ab necessitatibus quibusdam blanditiis labore vel sapiente, molestiae, consequatur quas ducimus sequi soluta recusandae architecto! Ullam beatae nulla accusamus quisquam nihil!</p>
     </BottomSheet>
     <div className="min-h-screen">
       <Image
+        className="cursor-pointer"
         alt="Detail Product"
         loading="lazy"
         layout="responsive"
@@ -46,7 +49,7 @@ const DetailProduct = () => {
           </div>
         </div>
         <div className="flex flex-col bg-white py-8 px-6 gap-3">
-          <h2 className="font-bold mb-3">Deskripsi Produk</h2>
+          <h2 className="font-bold mb-1">Deskripsi Produk</h2>
           <p>Description Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quo sequi...</p>
           <button onClick={() => bottomSheet.current?.open()} className="self-end text-lg text-blue-500 font-bold">
             Selengkapnya
@@ -79,7 +82,7 @@ const DetailProduct = () => {
         </div>
       </div>
       <div className="fixed bottom-0 w-full max-w-[600px] bg-white border-t-[1px] border-gray-200 px-6 py-4">
-        <button className="bg-orange-500 text-white text-lg font-medium rounded-lg w-full p-3">
+        <button onClick={increaseCard} className="bg-orange-500 text-white text-lg font-medium rounded-lg w-full p-3">
           Tambah Ke Troli
         </button>
       </div>
