@@ -54,6 +54,7 @@ const BottomSheetBody: FC<BodyProps> = ({ children, mode, toggleMode }) => {
     }
     if (!isPresent) {
       backdropElement.current.classList.remove('opacity-70')
+      backdropElement.current.classList.add('opacity-0')
       bodyElement.current.style.transform = 'translateY(100%)'
       setTimeout(safeToRemove, 300)
     }
@@ -63,7 +64,7 @@ const BottomSheetBody: FC<BodyProps> = ({ children, mode, toggleMode }) => {
     <div
       ref={backdropElement}
       onClick={() => toggleMode('close')}
-      className="fixed top-0 h-screen w-full max-w-[600px] bg-black opacity-0 transition-opacity duration-300 z-10"
+      className="fixed top-0 h-screen w-full max-w-[600px] bg-black transition-opacity duration-300 z-10"
     />
     <div
       ref={bodyElement}
