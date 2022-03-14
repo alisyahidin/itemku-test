@@ -9,21 +9,27 @@ export type BottomSheetAction = {
   close: () => void,
 }
 
-const BottomSheet = forwardRef<BottomSheetAction, Props>((props, ref) => {
-  const [isOpen, setIsOpen] = useState(false)
+export type Mode = 'close' | 'half' | 'full'
 
-  const handleOpen = (value = true) => {
-    if (value) document.body.classList.add('overflow-y-hidden')
-    if (!value) document.body.classList.remove('overflow-y-hidden')
-    setIsOpen(value)
+const BottomSheet = forwardRef<BottomSheetAction, Props>(({ children }, ref) => {
+  const [mode, setMode] = useState<Mode>('close')
+
+  const toggleMode = (value: Mode) => {
+    if (value !== 'close' && !document.body.classList.contains('overflow-y-hidden')) document.body.classList.add('overflow-y-hidden')
+    if (value === 'close') document.body.classList.remove('overflow-y-hidden')
+    setMode(value)
   }
 
-  useImperativeHandle(ref, () => ({ open: () => handleOpen(true), close: () => handleOpen(false) }))
+  useImperativeHandle(ref, () => ({
+    open: () => toggleMode('half'),
+    openFull: () => toggleMode('full'),
+    close: () => toggleMode('close'),
+  }))
 
   return (
     <AnimatePresence>
-      {isOpen && <BottomSheetBody handleOpen={handleOpen}>
-        {props.children}
+      {mode !== 'close' && <BottomSheetBody mode={mode} toggleMode={toggleMode}>
+        {children}
       </BottomSheetBody>}
     </AnimatePresence>)
 })
