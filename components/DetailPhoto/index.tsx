@@ -20,17 +20,18 @@ const DetailPhoto = forwardRef<DetailPhotoAction, Props>(({ id }, ref) => {
   const toggleOpen = (value: boolean) => {
     if (value) {
       router.push(`#${id}`)
-      document.body.classList.add('overflow-y-hidden')
     }
     if (!value) {
       router.replace(currentPath)
-      document.body.classList.remove('overflow-y-hidden')
     }
   }
 
-  useEffect(() => () => document.body.classList.remove('overflow-y-hidden'), []) // clean class on onmounted
-
   useEffect(() => {
+    if (hash === id) {
+      document.body.classList.add('overflow-y-hidden')
+    } else {
+      document.body.classList.remove('overflow-y-hidden')
+    }
     setIsOpen(hash === id)
   }, [id, hash, setIsOpen])
 
