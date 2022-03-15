@@ -23,7 +23,7 @@ const Cart: FC<{ mode: NavbarMode }> = ({ mode }) => {
 
     isReadyRender.current = true
     return () => clearTimeout(timeout.current)
-  }, [count])
+  }, [count, stopAnimating])
 
   return (
     <div className="relative">

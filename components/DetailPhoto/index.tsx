@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react"
 import { useRouter } from "next/router"
+import Image from 'next/image'
 import BackIcon from "../icon/Back"
 
 type Props = {
@@ -27,13 +28,11 @@ const DetailPhoto = forwardRef<DetailPhotoAction, Props>(({ id }, ref) => {
     }
   }
 
+  useEffect(() => () => document.body.classList.remove('overflow-y-hidden'), []) // clean class on onmounted
+
   useEffect(() => {
     setIsOpen(hash === id)
-
-    return () => {
-      document.body.classList.remove('overflow-y-hidden')
-    }
-  }, [hash, setIsOpen])
+  }, [id, hash, setIsOpen])
 
   useImperativeHandle(ref, () => ({
     open: () => toggleOpen(true),
@@ -42,15 +41,16 @@ const DetailPhoto = forwardRef<DetailPhotoAction, Props>(({ id }, ref) => {
 
   return !isOpen ? null : (
     <div className="fixed top-0 max-w-[600px] w-full h-screen bg-[#111111] z-20">
-      <nav className="fixed top-0 px-6 py-3">
+      <nav className="fixed top-0 px-6 py-3 z-[1]">
         <button onClick={() => toggleOpen(false)} className="p-[1px]">
           <BackIcon color="#FFF" />
         </button>
       </nav>
       <div className="flex items-center h-full">
-        <img
+        <Image
           alt="Detail Product"
-          width="100%"
+          layout="fill"
+          objectFit="contain"
           src="https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg"
         />
       </div>
