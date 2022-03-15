@@ -29,6 +29,10 @@ const DetailPhoto = forwardRef<DetailPhotoAction, Props>(({ id }, ref) => {
 
   useEffect(() => {
     setIsOpen(hash === id)
+
+    return () => {
+      document.body.classList.remove('overflow-y-hidden')
+    }
   }, [hash, setIsOpen])
 
   useImperativeHandle(ref, () => ({
