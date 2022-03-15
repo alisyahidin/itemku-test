@@ -14,7 +14,7 @@ export type DetailPhotoAction = {
 
 const DetailPhoto = forwardRef<DetailPhotoAction, Props>(({ id }, ref) => {
   const router = useRouter()
-  const [currentPath, hash] = router.asPath.split('#')
+  const [_, hash] = router.asPath.split('#')
   const [isOpen, setIsOpen] = useState(hash === id)
 
   const toggleOpen = (value: boolean) => {
@@ -22,7 +22,7 @@ const DetailPhoto = forwardRef<DetailPhotoAction, Props>(({ id }, ref) => {
       router.push(`#${id}`)
     }
     if (!value) {
-      router.replace(currentPath)
+      router.back()
     }
   }
 
