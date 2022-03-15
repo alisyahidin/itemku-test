@@ -29,7 +29,6 @@ const DetailPhoto = forwardRef<DetailPhotoAction, Props>(({ id }, ref) => {
 
   useEffect(() => {
     setIsOpen(hash === id)
-    console.log(history.length)
   }, [hash, setIsOpen])
 
   useImperativeHandle(ref, () => ({
@@ -54,5 +53,7 @@ const DetailPhoto = forwardRef<DetailPhotoAction, Props>(({ id }, ref) => {
     </div>
   )
 })
+
+DetailPhoto.displayName = 'DetailPhotoProduct'
 
 export default DetailPhoto

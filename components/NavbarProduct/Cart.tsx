@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, useEffect, useRef } from "react"
 import { useCart } from "../../state"
 import CartIcon from "../icon/Cart"
 import { NavbarMode } from "."
@@ -34,5 +34,7 @@ const Cart: FC<{ mode: NavbarMode }> = ({ mode }) => {
     </div>
   )
 }
+
+Cart.displayName = 'NavbarCart'
 
 export default Cart
