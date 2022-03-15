@@ -23,7 +23,7 @@ const DetailProduct = () => {
     <div className="min-h-screen">
       <Image
         onClick={() => detailPhoto.current?.open()}
-        className="cursor-pointer"
+        className="md:cursor-pointer"
         alt="Detail Product"
         loading="lazy"
         layout="responsive"
