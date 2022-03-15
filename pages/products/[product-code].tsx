@@ -5,10 +5,12 @@ import Card from "../../components/Card"
 import LoveButton from "../../components/LoveButton"
 import NavbarProduct from "../../components/NavbarProduct"
 import Scrollable from "../../components/Scrollable"
+import DetailPhoto, { DetailPhotoAction } from "../../components/DetailPhoto"
 import { useCart } from "../../state"
 
 const DetailProduct = () => {
   const bottomSheet = useRef<BottomSheetAction>(null)
+  const detailPhoto = useRef<DetailPhotoAction>(null)
   const increaseCard = useCart(state => state.increase)
 
   return (<>
@@ -17,8 +19,10 @@ const DetailProduct = () => {
       <h2 className="font-bold mb-4">Deskripsi Produk</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur ab necessitatibus quibusdam blanditiis labore vel sapiente, molestiae, consequatur quas ducimus sequi soluta recusandae architecto! Ullam beatae nulla accusamus quisquam nihil!</p>
     </BottomSheet>
+    <DetailPhoto id="detail-photo" ref={detailPhoto} />
     <div className="min-h-screen">
       <Image
+        onClick={() => detailPhoto.current?.open()}
         className="cursor-pointer"
         alt="Detail Product"
         loading="lazy"

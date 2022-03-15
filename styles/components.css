@@ -7,6 +7,18 @@
   }
 }
 
+@keyframes love-pop {
+  0% {
+    transform: scale(var(--btn-focus-scale, 0.95));
+  }
+  40% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @layer components {
   .discount-badge {
     @apply bg-red-500 text-white rounded-md py-[2px] px-1;
@@ -26,6 +38,19 @@
     &.increase {
       transform-origin: 0% 100%;
       animation: cart-increase 350ms cubic-bezier(0.2, 1.4, 1, 1.2);
+    }
+  }
+
+  .btn-love {
+    @apply font-semibold uppercase;
+    animation: love-pop 0.25s ease-out;
+    &:active:hover,
+    &:active:focus {
+      animation: none;
+    }
+    &:active:hover,
+    &:active:focus {
+      transform: scale(0.9);
     }
   }
 }

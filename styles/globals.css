@@ -14,5 +14,5 @@ body {
 }
 
 #__next {
-  @apply mx-auto min-h-screen max-w-[600px];
+  @apply relative mx-auto min-h-screen max-w-[600px];
 }

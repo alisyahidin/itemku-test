@@ -6,6 +6,7 @@ type Props = PropsWithChildren<{}>
 
 export type BottomSheetAction = {
   open: () => void,
+  openFull: () => void,
   close: () => void,
 }
 
